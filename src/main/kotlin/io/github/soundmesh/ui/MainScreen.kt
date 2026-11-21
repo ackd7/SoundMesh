@@ -305,7 +305,7 @@ private fun ChangelogDialog(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(bottom = 12.dp)
-                        .clip(RoundedCornerShape(AppMetrics.CornerRadius))
+                        .clip(RoundedCornerShape(AppMetrics.InnerCornerRadius))
                         .background(MiuixTheme.colorScheme.primary.copy(alpha = 0.12f))
                         .padding(12.dp),
                 ) {
@@ -486,7 +486,7 @@ private fun DeviceIcon(device: AudioDevice, active: Boolean) {
         modifier = Modifier
             .padding(end = 12.dp)
             .size(40.dp)
-            .clip(RoundedCornerShape(AppMetrics.CornerRadius))
+            .clip(RoundedCornerShape(AppMetrics.InnerCornerRadius))
             .background(bg),
         contentAlignment = Alignment.Center,
     ) {

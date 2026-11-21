@@ -16,9 +16,10 @@ import androidx.compose.ui.graphics.vector.addPathNodes
 import androidx.compose.ui.unit.dp
 import io.github.soundmesh.audio.DeviceKind
 
-/** Unified visual tokens matching Windows 11 DWM rounded window corners (8dp). */
+/** Unified continuous corner tokens inspired by Miuix & Mochi. */
 object AppMetrics {
-    val CornerRadius = 8.dp
+    val CornerRadius = 18.dp
+    val InnerCornerRadius = 14.dp
 }
 
 /**

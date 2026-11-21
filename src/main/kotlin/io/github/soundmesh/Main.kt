@@ -96,12 +96,10 @@ fun main() = application {
         ) {
             val placement = LocalWindowState.current.placement
             val isFullscreen = placement == WindowPlacement.Fullscreen
-            val isFloating = placement == WindowPlacement.Floating
             val captionBarHeight = LocalMiuixWindowInfo.current.captionBarHeight
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .then(if (isFloating) Modifier.clip(RoundedCornerShape(AppMetrics.CornerRadius)) else Modifier)
                     .background(MiuixTheme.colorScheme.surface),
             ) {
                 if (!isFullscreen && captionBarHeight > 0.dp) {

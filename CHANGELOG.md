@@ -2,6 +2,14 @@
 
 All notable changes to SoundMesh are documented in this file.
 
+## [1.1.1] - 2026-11-21
+
+### Changed
+- 放大全局圆角至 `18dp`（卡片、按钮、图标按钮、弹窗统一连续圆角，内嵌图标容器采用 `14dp` 同心圆角）。
+
+### Added
+- 新增 NSIS Modern UI 2 安装程序打包脚本（`packaging/installer.nsi` 与 `scripts/build-nsis.ps1`）。
+
 ## [1.1.0] - 2026-11-21
 
 ### Changed

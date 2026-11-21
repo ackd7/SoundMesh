@@ -8,7 +8,7 @@ data class ChangelogEntry(
 
 object AppInfo {
     const val NAME = "SoundMesh"
-    const val VERSION = "1.1.0"
+    const val VERSION = "1.1.1"
     const val REPO_OWNER = "ackd7"
     const val REPO_NAME = "SoundMesh"
     const val REPO_URL = "https://github.com/$REPO_OWNER/$REPO_NAME"
@@ -16,6 +16,14 @@ object AppInfo {
     const val LATEST_RELEASE_API = "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/releases/latest"
 
     val changelog: List<ChangelogEntry> = listOf(
+        ChangelogEntry(
+            version = "1.1.1",
+            date = "2026-11-21",
+            highlights = listOf(
+                "全局圆角升级至 18dp 连续圆角（卡片、按钮、弹窗与内嵌容器同心圆角协调统一）",
+                "提供 NSIS 现代向导安装程序（LZMA 固实压缩，支持中文界面与卸载项）",
+            ),
+        ),
         ChangelogEntry(
             version = "1.1.0",
             date = "2026-11-21",

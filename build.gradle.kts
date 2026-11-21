@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "io.github.soundmesh"
-version = "1.1.0"
+version = "1.1.1"
 
 val miuixVersion = "0.9.5-beta03"
 val jnaVersion = "5.19.1"
