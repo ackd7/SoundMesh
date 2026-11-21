@@ -45,6 +45,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import io.github.soundmesh.AppController
 import io.github.soundmesh.AppInfo
+import io.github.soundmesh.ThemeMode
 import io.github.soundmesh.UpdateChecker
 import io.github.soundmesh.UpdateState
 import io.github.soundmesh.audio.AudioDevice
@@ -229,6 +230,17 @@ private fun SettingsAndAboutCard(
     }
 
     Card(modifier = CardBottomGap, cornerRadius = AppMetrics.CornerRadius) {
+        val themeModes = ThemeMode.entries
+        WindowDropdownPreference(
+            items = themeModes.map { it.label },
+            selectedIndex = themeModes.indexOf(controller.themeMode).coerceAtLeast(0),
+            title = "外观主题",
+            summary = "浅色、深色或自动跟随系统外观",
+            onSelectedIndexChange = { idx ->
+                controller.updateThemeMode(themeModes[idx])
+            },
+        )
+        HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))
         SwitchPreference(
             checked = controller.resumeOnLaunch,
             onCheckedChange = controller::updateResumeOnLaunch,

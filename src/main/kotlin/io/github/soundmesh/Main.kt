@@ -60,7 +60,12 @@ fun main() = application {
         exitApplication()
     }
 
-    val dark = isSystemInDarkTheme()
+    val systemDark = isSystemInDarkTheme()
+    val dark = when (controller.themeMode) {
+        ThemeMode.System -> systemDark
+        ThemeMode.Light -> false
+        ThemeMode.Dark -> true
+    }
     MiuixTheme(colors = if (dark) darkColorScheme() else lightColorScheme()) {
         val trayIcon = rememberVectorPainter(AppIcons.VolumeUp)
         Tray(

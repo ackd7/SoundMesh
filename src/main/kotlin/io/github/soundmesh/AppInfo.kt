@@ -8,7 +8,7 @@ data class ChangelogEntry(
 
 object AppInfo {
     const val NAME = "SoundMesh"
-    const val VERSION = "1.1.1"
+    const val VERSION = "1.2.0"
     const val REPO_OWNER = "ackd7"
     const val REPO_NAME = "SoundMesh"
     const val REPO_URL = "https://github.com/$REPO_OWNER/$REPO_NAME"
@@ -16,6 +16,15 @@ object AppInfo {
     const val LATEST_RELEASE_API = "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/releases/latest"
 
     val changelog: List<ChangelogEntry> = listOf(
+        ChangelogEntry(
+            version = "1.2.0",
+            date = "2026-11-21",
+            highlights = listOf(
+                "新增外观主题切换选项：支持浅色模式、深色模式与自动跟随系统设置（自动记忆）",
+                "新增单 EXE 便携版（SoundMesh-Portable.exe）与 NSIS 安装版双产物打包",
+                "接入 GitHub Actions 云端自动编译与 Release 发布流水线",
+            ),
+        ),
         ChangelogEntry(
             version = "1.1.1",
             date = "2026-11-21",

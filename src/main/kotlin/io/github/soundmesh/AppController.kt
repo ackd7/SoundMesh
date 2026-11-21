@@ -44,6 +44,9 @@ class AppController {
     var resumeOnLaunch by mutableStateOf(settings.resumeOnLaunch)
         private set
 
+    var themeMode by mutableStateOf(settings.themeMode)
+        private set
+
     val enabled = mutableStateMapOf<String, Boolean>()
     val volumes = mutableStateMapOf<String, Float>()
     val delays = mutableStateMapOf<String, Int>()
@@ -170,6 +173,12 @@ class AppController {
     fun updateResumeOnLaunch(on: Boolean) {
         resumeOnLaunch = on
         settings.resumeOnLaunch = on
+        settings.save()
+    }
+
+    fun updateThemeMode(mode: ThemeMode) {
+        themeMode = mode
+        settings.themeMode = mode
         settings.save()
     }
 

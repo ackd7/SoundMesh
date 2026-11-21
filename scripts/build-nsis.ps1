@@ -1,5 +1,5 @@
 param(
-    [string]$Version = "1.1.1"
+    [string]$Version = "1.2.0"
 )
 
 $ErrorActionPreference = "Stop"
@@ -21,8 +21,15 @@ if (-not $makensis) {
     throw "NSIS (makensis.exe) not found. Install it via: winget install NSIS.NSIS"
 }
 
+Write-Host "Building NSIS Setup installer..."
 & $makensis /INPUTCHARSET UTF8 "/DAPP_VERSION=$Version" "packaging\installer.nsi"
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-$out = Join-Path $root "build\SoundMesh-$Version-Setup.exe"
-Write-Host "NSIS installer created: $out ($([math]::Round((Get-Item $out).Length / 1MB, 1)) MB)"
+Write-Host "Building Single-EXE Portable edition..."
+& $makensis /INPUTCHARSET UTF8 "/DAPP_VERSION=$Version" "packaging\portable.nsi"
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+$setup = Join-Path $root "build\SoundMesh-$Version-Setup.exe"
+$portable = Join-Path $root "build\SoundMesh-$Version-Portable.exe"
+Write-Host "NSIS Setup created:    $setup ($([math]::Round((Get-Item $setup).Length / 1MB, 1)) MB)"
+Write-Host "Portable EXE created:  $portable ($([math]::Round((Get-Item $portable).Length / 1MB, 1)) MB)"

@@ -2,6 +2,13 @@
 
 All notable changes to SoundMesh are documented in this file.
 
+## [1.2.0] - 2026-11-21
+
+### Added
+- 新增「外观主题」设置选项，支持 **跟随系统 / 浅色模式 / 深色模式** 实时切换并持久化保存。
+- 新增单文件 EXE 便携版（`SoundMesh-x.x.x-Portable.exe`，双击即用、无需安装）。
+- 新增 GitHub Actions 云端编译与自动发布流水线，自动构建 NSIS 安装版与单 EXE 便携版。
+
 ## [1.1.1] - 2026-11-21
 
 ### Changed

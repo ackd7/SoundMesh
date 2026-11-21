@@ -3,6 +3,12 @@ package io.github.soundmesh
 import java.io.File
 import java.util.Properties
 
+enum class ThemeMode(val label: String) {
+    System("跟随系统"),
+    Light("浅色模式"),
+    Dark("深色模式"),
+}
+
 /** Persists user choices in %APPDATA%\SoundMesh\settings.properties. */
 class Settings {
     private val file: File = run {
@@ -33,6 +39,13 @@ class Settings {
         get() = props.getProperty("wasRunning", "false").toBoolean()
         set(value) {
             props.setProperty("wasRunning", value.toString())
+        }
+
+    var themeMode: ThemeMode
+        get() = runCatching { ThemeMode.valueOf(props.getProperty("themeMode", ThemeMode.System.name)) }
+            .getOrDefault(ThemeMode.System)
+        set(value) {
+            props.setProperty("themeMode", value.name)
         }
 
     fun isEnabled(id: String) = props.getProperty("on|$id", "false").toBoolean()

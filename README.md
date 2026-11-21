@@ -31,13 +31,15 @@
 - **现代横屏桌面 UI**：
   - 采用横屏双栏布局，左侧控制中心与音频来源，右侧多设备列表与独立调音；卡片、按钮与弹窗统一使用 `18dp` 连续圆角。
   - 采用 [compose-miuix-ui/miuix](https://github.com/compose-miuix-ui/miuix) 组件库与原生 Mica / 自定义标题栏窗口（`miuix-window`）。
-  - 结合 [feice11/mochi-compose](https://github.com/feice11/mochi-compose) 风格的弹簧按压动效，支持深色 / 浅色模式自动跟随系统。
+  - 结合 [feice11/mochi-compose](https://github.com/feice11/mochi-compose) 风格的弹簧按压动效，支持 **浅色 / 深色 / 跟随系统** 三种外观主题切换。
 - **版本管理与在线更新**：内置当前版本信息、更新日志（[CHANGELOG.md](CHANGELOG.md)）弹窗与 GitHub Releases 新版本在线检查。
 - **系统托盘驻留**：运行中关闭窗口自动最小化到托盘，支持记忆配置与启动时自动恢复输出。
 
 ### 安装与使用
 
-1. 前往 [Releases](https://github.com/ackd7/SoundMesh/releases/latest) 下载 `SoundMesh-x.x.x-Setup.exe`（NSIS 安装程序，内置运行时，无需安装 Java），双击安装后运行。
+1. 前往 [Releases](https://github.com/ackd7/SoundMesh/releases/latest) 下载：
+   - **NSIS 安装版**：`SoundMesh-x.x.x-Setup.exe`（支持自定义路径与快捷方式，无需安装 Java）
+   - **单 EXE 便携版**：`SoundMesh-x.x.x-Portable.exe`（单文件双击即用，免安装）
 2. 在 **音频来源** 中选择要捕获声音的设备（默认跟随 Windows 系统默认输出设备）。
 3. 在 **同步输出设备** 列表中，打开需要同时发声的设备开关（如蓝牙音箱、有线耳机、蓝牙耳机等）。
 4. 点击 **开始同步输出**。
@@ -78,13 +80,15 @@ Without requiring any virtual audio cable or driver, it captures everything play
 - **Modern Landscape Desktop UI**:
   - Two-column landscape layout with unified `18dp` continuous corners across cards, buttons, and dialogs.
   - Built with [compose-miuix-ui/miuix](https://github.com/compose-miuix-ui/miuix) (`miuix-window` native Mica backdrop & custom title bar) and spring press motion inspired by [feice11/mochi-compose](https://github.com/feice11/mochi-compose).
-  - Automatic light/dark theme following Windows settings.
+  - Built-in **Light / Dark / Follow System** theme switcher.
 - **Built-in Version Info, Changelog & Update Checker**: Displays current version, an in-app changelog dialog ([CHANGELOG.md](CHANGELOG.md)), and checks GitHub Releases for new versions.
 - **System Tray Support**: Closing the window while routing minimizes to the system tray; remembers device settings and optionally auto-resumes on launch.
 
 ### Download & Usage
 
-1. Download `SoundMesh-x.x.x-Setup.exe` from [GitHub Releases](https://github.com/ackd7/SoundMesh/releases/latest) (NSIS installer with bundled runtime — no Java installation required).
+1. Download from [GitHub Releases](https://github.com/ackd7/SoundMesh/releases/latest) (bundled runtime — no Java installation required):
+   - **NSIS Installer**: `SoundMesh-x.x.x-Setup.exe`
+   - **Single-EXE Portable**: `SoundMesh-x.x.x-Portable.exe` (double-click to run, no installation)
 2. Choose your **Audio Source** (defaults to following the Windows default playback device).
 3. Toggle on all **Output Devices** you want to play audio simultaneously (Bluetooth speakers, wired headphones, Bluetooth headphones, etc.).
 4. Click **Start Sync Output** (`开始同步输出`).
