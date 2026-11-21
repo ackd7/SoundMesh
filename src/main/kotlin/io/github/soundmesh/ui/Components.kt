@@ -16,6 +16,11 @@ import androidx.compose.ui.graphics.vector.addPathNodes
 import androidx.compose.ui.unit.dp
 import io.github.soundmesh.audio.DeviceKind
 
+/** Unified visual tokens matching Windows 11 DWM rounded window corners (8dp). */
+object AppMetrics {
+    val CornerRadius = 8.dp
+}
+
 /**
  * iOS-like springy press feedback, inspired by the motion language of mochi-compose
  * (https://github.com/feice11/mochi-compose). Low damping gives the subtle overshoot.
@@ -73,6 +78,14 @@ object AppIcons {
     val Refresh = icon(
         "Refresh",
         "M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z",
+    )
+    val Changelog = icon(
+        "Changelog",
+        "M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z",
+    )
+    val Update = icon(
+        "Update",
+        "M21 10.12h-6.78l2.74-2.82c-2.73-2.7-7.15-2.8-9.88-.1-2.73 2.71-2.73 7.08 0 9.79s7.15 2.71 9.88 0C18.32 15.65 19 14.08 19 12.1h2c0 1.98-.88 4.55-2.64 6.29-3.51 3.48-9.21 3.48-12.72 0-3.5-3.47-3.53-9.11-.02-12.58s9.14-3.47 12.65 0L21 3v7.12z",
     )
 
     fun forKind(kind: DeviceKind): ImageVector = when (kind) {

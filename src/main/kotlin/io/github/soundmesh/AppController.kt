@@ -17,6 +17,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 
@@ -52,9 +53,13 @@ class AppController {
     )
         private set
 
+    var updateState by mutableStateOf<UpdateState>(UpdateState.Idle)
+        private set
+
     init {
         engine.sourceId = sourceId
         monitor.start()
+        checkForUpdates(silent = true)
         scope.launch {
             var lastSource: String? = null
             while (isActive) {
@@ -166,6 +171,19 @@ class AppController {
         resumeOnLaunch = on
         settings.resumeOnLaunch = on
         settings.save()
+    }
+
+    fun checkForUpdates(silent: Boolean = false) {
+        if (updateState is UpdateState.Checking) return
+        if (!silent) updateState = UpdateState.Checking
+        scope.launch {
+            val result = withContext(Dispatchers.IO) { UpdateChecker.checkLatest() }
+            if (silent && result is UpdateState.Error) {
+                // Keep Idle on silent startup failure so we don't bother the user.
+            } else {
+                updateState = result
+            }
+        }
     }
 
     fun refreshDevices() = monitor.refresh()

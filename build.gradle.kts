@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "io.github.soundmesh"
-version = "1.0.0"
+version = "1.1.0"
 
 val miuixVersion = "0.9.5-beta03"
 val jnaVersion = "5.19.1"
@@ -43,7 +43,7 @@ compose.desktop {
             packageVersion = project.version.toString()
             description = "Play system audio on multiple output devices at once"
             vendor = "SoundMesh"
-            modules("java.instrument", "jdk.unsupported", "java.management")
+            modules("java.instrument", "jdk.unsupported", "java.management", "java.net.http")
             windows {
                 menu = true
                 shortcut = true

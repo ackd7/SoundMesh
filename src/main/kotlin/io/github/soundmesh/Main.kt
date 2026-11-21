@@ -10,8 +10,10 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -19,6 +21,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
@@ -30,6 +33,7 @@ import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import io.github.soundmesh.ui.AppIcons
+import io.github.soundmesh.ui.AppMetrics
 import io.github.soundmesh.ui.MainScreen
 import top.yukonga.miuix.kmp.basic.Text
 import top.yukonga.miuix.kmp.theme.MiuixTheme
@@ -48,7 +52,7 @@ fun main() = application {
     val controller = remember { AppController() }
     var windowVisible by remember { mutableStateOf(true) }
     val state = rememberWindowState(
-        size = DpSize(460.dp, 860.dp),
+        size = DpSize(960.dp, 620.dp),
         position = WindowPosition.Aligned(Alignment.Center),
     )
     val quit = {
@@ -61,7 +65,7 @@ fun main() = application {
         val trayIcon = rememberVectorPainter(AppIcons.VolumeUp)
         Tray(
             icon = trayIcon,
-            tooltip = if (controller.running) "SoundMesh · 正在同步输出" else "SoundMesh",
+            tooltip = if (controller.running) "${AppInfo.NAME} v${AppInfo.VERSION} · 正在同步输出" else "${AppInfo.NAME} v${AppInfo.VERSION}",
             onAction = { windowVisible = true },
             menu = {
                 Item("显示主窗口", onClick = { windowVisible = true })
@@ -78,10 +82,10 @@ fun main() = application {
             onCloseRequest = {
                 if (controller.running) windowVisible = false else quit()
             },
-            title = "SoundMesh",
+            title = "${AppInfo.NAME} v${AppInfo.VERSION}",
             icon = trayIcon,
             properties = MiuixWindowProperties.default(
-                minSize = DpSize(400.dp, 600.dp),
+                minSize = DpSize(760.dp, 500.dp),
                 captionButtonIsDarkTheme = isDark,
                 backgroundIsDarkTheme = isDark,
                 backgroundType = when {
@@ -90,11 +94,14 @@ fun main() = application {
                 },
             ),
         ) {
-            val isFullscreen = LocalWindowState.current.placement == WindowPlacement.Fullscreen
+            val placement = LocalWindowState.current.placement
+            val isFullscreen = placement == WindowPlacement.Fullscreen
+            val isFloating = placement == WindowPlacement.Floating
             val captionBarHeight = LocalMiuixWindowInfo.current.captionBarHeight
             Column(
                 modifier = Modifier
                     .fillMaxSize()
+                    .then(if (isFloating) Modifier.clip(RoundedCornerShape(AppMetrics.CornerRadius)) else Modifier)
                     .background(MiuixTheme.colorScheme.surface),
             ) {
                 if (!isFullscreen && captionBarHeight > 0.dp) {
@@ -118,7 +125,20 @@ fun main() = application {
                                     modifier = Modifier.size(16.dp),
                                 )
                                 Spacer(Modifier.width(8.dp))
-                                Text("SoundMesh", style = MiuixTheme.textStyles.body2)
+                                Text(AppInfo.NAME, style = MiuixTheme.textStyles.body2)
+                                Spacer(Modifier.width(8.dp))
+                                Box(
+                                    modifier = Modifier
+                                        .clip(RoundedCornerShape(AppMetrics.CornerRadius))
+                                        .background(MiuixTheme.colorScheme.secondary)
+                                        .padding(horizontal = 6.dp, vertical = 1.dp),
+                                ) {
+                                    Text(
+                                        text = "v${AppInfo.VERSION}",
+                                        style = MiuixTheme.textStyles.footnote1,
+                                        color = MiuixTheme.colorScheme.onSurfaceVariantSummary,
+                                    )
+                                }
                             }
                         }
                     }
